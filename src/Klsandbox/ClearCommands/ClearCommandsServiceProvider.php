@@ -4,8 +4,8 @@ namespace Klsandbox\ClearCommands;
 
 use Illuminate\Support\ServiceProvider;
 
-class ClearCommandsServiceProvider extends ServiceProvider {
-
+class ClearCommandsServiceProvider extends ServiceProvider
+{
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -18,14 +18,15 @@ class ClearCommandsServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function register() {
-        $this->app->singleton('command.klsandbox.clearcachedblade', function($app) {
+    public function register()
+    {
+        $this->app->singleton('command.klsandbox.clearcachedblade', function ($app) {
             return new ClearCachedBlade();
         });
-        $this->app->singleton('command.klsandbox.clearoldlog', function($app) {
+        $this->app->singleton('command.klsandbox.clearoldlog', function ($app) {
             return new ClearOldLog();
         });
-        
+
         $this->commands('command.klsandbox.clearcachedblade');
         $this->commands('command.klsandbox.clearoldlog');
     }
@@ -35,11 +36,11 @@ class ClearCommandsServiceProvider extends ServiceProvider {
      *
      * @return array
      */
-    public function provides() {
+    public function provides()
+    {
         return [
             'command.klsandbox.clearcachedblade',
             'command.klsandbox.clearoldlog',
         ];
     }
-
 }

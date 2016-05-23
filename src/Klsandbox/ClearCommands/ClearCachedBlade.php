@@ -8,8 +8,8 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
 
 // From https://gist.github.com/lucasmichot/7313220
-class ClearCachedBlade extends Command {
-
+class ClearCachedBlade extends Command
+{
     /**
      * The console command name.
      *
@@ -29,12 +29,12 @@ class ClearCachedBlade extends Command {
      *
      * @return void
      */
-    public function fire() {
+    public function fire()
+    {
         $fileSystem = new Filesystem();
 
         $fileSystem->remove(Finder::create()->in(Config::get('view.compiled'))->files());
 
         $this->comment('Cleard compiled views');
     }
-
 }

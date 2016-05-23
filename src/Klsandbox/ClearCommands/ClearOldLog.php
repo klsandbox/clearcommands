@@ -6,8 +6,8 @@ use Illuminate\Console\Command;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
 
-class ClearOldLog extends Command {
-
+class ClearOldLog extends Command
+{
     /**
      * The console command name.
      *
@@ -27,20 +27,20 @@ class ClearOldLog extends Command {
      *
      * @return void
      */
-    public function fire() {
+    public function fire()
+    {
         $fileSystem = new Filesystem();
 
         $now = date('Y-m-d');
-        $files = Finder::create()->in(storage_path("logs"))->files();
+        $files = Finder::create()->in(storage_path('logs'))->files();
         foreach ($files->files() as $file) {
             $fileName = $file->getFileName();
             if (!str_contains($fileName, $now)) {
-                $this->comment("Deleting " . $fileName);
+                $this->comment('Deleting ' . $fileName);
                 $fileSystem->remove($file);
             } else {
-                $this->comment("Keeping " . $fileName);
+                $this->comment('Keeping ' . $fileName);
             }
         }
     }
-
 }
